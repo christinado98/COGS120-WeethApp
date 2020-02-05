@@ -4,16 +4,28 @@
     <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/jquery.min.js"></script>
     <script src="js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 </head>
 
 <body>
 
     <div id="navBar" class="bar">
-        <p style="margin-top: 1.75vh; font-size: 4.5vh;">Create Event</p>
+        <p style="margin-top: 1.75vh; font-size: 4.5vh;">New Event</p>
         <img id="back" onclick="goBack()" src="img/back.png">
+    </div>
+    
+    <div class="createForm">
+        <input id="createFriend" placeholder="Weeth Who?">
+        <div id="autofill">(autofill)</div>
+        <br><br>
+        <input id="createTitle" placeholder="Event Title"><br><br>
+        <input id="createPlace" placeholder="Event Location"><br><br>
+        <input id="createDate" placeholder="Event Date" type="date"><br><br>
+        <p style="opacity: 0; font-size: 30vh;">s</p>
+        <div id="createFinish" onclick="buttonFeed('#createFinish', 'Have Fun!')">Create</div>
     </div>
 
 </body>
