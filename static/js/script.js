@@ -26,3 +26,9 @@ function initializePage() {
 function goBack() {
   window.history.back();
 }
+
+function buttonFeed(x, y) {
+    $(x).html(y);
+    $(x).fadeOut(1200);
+    setTimeout('history.go(-1)', 1200);
+}
