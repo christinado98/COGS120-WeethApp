@@ -9,7 +9,17 @@ var PORT = 3000;
 
 // Express is a web framework for node.js
 // that makes nontrivial applications easier to build
-var express = require('express');
+var express = require("express");
+var path = require("path");
+var handlebars = require("express3-handlebars");
+
+var index = require("./routes/index");
+var home = require("./routes/home");
+var friends = require("./routes/friends");
+var create = require("./routes/create");
+var notification = require("./routes/notification");
+var profile = require("./routes/profile");
+var friend = require("./routes/friend");
 
 // Create the server instance
 var app = express();
@@ -18,14 +28,24 @@ var app = express();
 app.use(express.logger());
 app.use(express.compress());
 
-// Return all pages in the /static directory
-// whenever they are requested at '/'
-// e.g., http://localhost:3000/index.html
-// maps to /static/index.html on this machine
-app.use(express.static(__dirname + '/static'));
+// all environment
+app.set("views", path.join(__dirname, "views"));
+app.engine("handlebars", handlebars());
+app.set("view engine", "handlebars");
+app.use(express.favicon());
+app.use(express.static(path.join(__dirname, "public")));
+
+// all routes
+app.get("/", index.view);
+app.get("/home", home.view);
+app.get("/friends", friends.list);
+app.get("/friends/:friend", friend.list);
+app.get("/create", create.createEvent);
+app.get("/notification", notification.list);
+app.get("/profile", profile.view);
 
 // Start the server
 var port = process.env.PORT || PORT; // 80 for web, 3000 for development
 app.listen(port, function() {
-	console.log("Node.js server running on port %s", port);
+  console.log("Node.js server running on port %s", port);
 });
